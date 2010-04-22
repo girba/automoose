@@ -7,19 +7,16 @@ cd $ROOT
 ROOT=$(pwd)
 
 # directory configuration
-#if [ -z $WORKSPACE ] ; then
-#    BUILD_PATH="${WORKSPACE:=$(readlink -f $(dirname $0))/builds}"
-#  else
-   BUILD_PATH="$ROOT/builds"
-#fi
+BUILD_PATH="${WORKSPACE:=$(readlink -f $(dirname $0))/builds}"
 
 # the Pharo virtual machine for running the Moose image
-# specify another VM for platforms other than Linux
+# specify the VM for your platform
 PHARO_VM="$ROOT/pharo/Squeak-3.11.3.2135-solaris2.10_i386/bin/squeak"
+PHARO_VM="$ROOT/pharo/pharo-vm-0.15.2f-linux/squeak"
 PHARO_VM="$ROOT/pharo/Squeak 4.2.2beta1U.app/Contents/MacOS/Squeak VM Opt"
 
-#PHARO_PARAM="-nodisplay -nosound"
-#PHARO_PARAM="-headless"
+#PHARO_PARAM="-nodisplay -nosound" #for Linux
+PHARO_PARAM="-headless" #for Mac
 
 # the location of sources
 # copy / link sources in the src folder or change the variable
@@ -78,7 +75,7 @@ cd $INFUSION
 
 if [ ! -f $MSE_FILE ] ; then
 	echo -e "\n"=====ERROR PRODUCING MSE FILE====="\n"Make sure the path to the sources is correct
-	exit
+	exit 1
 fi
 
 echo -e "\n"Load in Moose"\n"
@@ -114,3 +111,5 @@ tar -czf "$MOOSE_FILE.tgz" "$MOOSE_FILE"
 rm -rf "$BUILD_PATH/$MOOSE_FILE"
 
 echo -e "\n"=====DONE=====
+
+exit 0

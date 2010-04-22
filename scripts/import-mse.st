@@ -1,3 +1,4 @@
+"wantedMse is to be set from outside"
 model := MooseModel new importFromMSEStream: 
   (StandardFileStream readOnlyFileNamed: wantedMse).
 model name: (FileDirectory baseNameFor: wantedMse).
