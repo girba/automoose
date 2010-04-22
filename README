@@ -1,0 +1,26 @@
+Auto Moose
+(c) 2010 Tudor Girba
+Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+
+The goal of this package is to provide an automatic 
+generation of dedicated Moose images starting from source files.
+
+Structure:
+
+/
+  builds/ 		- the folder where the built images will reside
+  inFusion/		- the preferred location for the inFusion folder containing the java2mse.sh
+  res/			- Moose specific image and other resources
+  scripts/		- Smalltalk scripts for specifying Moose behavior
+  pharo/		- the preferred location for pharo VMs
+  run.sh		- master script to create the Moose new image
+
+
+How to install:
+- Get the right VM for Pharo from: http://www.pharo-project.org/pharo-download
+- Get inFusion from: http://www.intooitus.com/infusion/download/inFusion.zip
+- Check the variables and comments from run.sh
+	- Ensure the path to the Pharo VM
+	- Ensure the path to sources
+	- Ensure the scripts to be run
+- Execute run.sh (eventually with parameters)
