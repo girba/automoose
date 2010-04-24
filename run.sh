@@ -7,7 +7,7 @@ cd $ROOT
 ROOT=$(pwd)
 
 # directory configuration
-BUILD_PATH="${WORKSPACE:=$(readlink -f $(dirname $0))/builds}"
+BUILD_PATH="${WORKSPACE:="$ROOT/builds"}"
 
 # the Pharo virtual machine for running the Moose image
 # specify the VM for your platform
@@ -100,7 +100,7 @@ cd "$BUILD_PATH/$MOOSE_FILE"
 cp "$ROOT/res/moose.image" $MOOSE_IMAGE_FILE
 cp "$ROOT/res/moose.changes" $MOOSE_CHANGES_FILE
 ln -fs "$ROOT/res/PharoV10.sources" "$BUILD_PATH/$MOOSE_FILE"
-ln -fs "$ROOT/res/Fonts" "$BUILD_PATH/$MOOSE_FILE"
+cp -rf "$ROOT/res/Fonts" "$BUILD_PATH/$MOOSE_FILE"
 
 "$PHARO_VM" $PHARO_PARAM $MOOSE_IMAGE_FILE $COMPLETE_SCRIPT
 
