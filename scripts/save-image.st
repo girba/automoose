@@ -1,2 +1,2 @@
 WorldState addDeferredUIMessage: [
-  SmalltalkImage current snapshot: true andQuit: true ]
+  SmalltalkImage current snapshot: true andQuit: false ]

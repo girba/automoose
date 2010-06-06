@@ -59,7 +59,7 @@ done
 
 if [ -z "$SCRIPTS" ] ; then
 	# the default scripts
-	SCRIPTS=("$SCRIPTS_PATH/import-mse.st" "$SCRIPTS_PATH/save-and-quit-image.st")
+	SCRIPTS=("$SCRIPTS_PATH/import-mse.st" "$SCRIPTS_PATH/open-moose-panel.st" "$SCRIPTS_PATH/save-and-quit-image.st")
 fi
 
 INFUSION="$ROOT/inFusion"
@@ -89,6 +89,7 @@ for FILE in "${SCRIPTS[@]}" ; do
  echo "!" >> "$COMPLETE_SCRIPT"
 done
 
+#copy moose images
 MOOSE_FILE="moose-$PROJECT_PREFIX-$DATE"
 MOOSE_IMAGE_FILE="$MOOSE_FILE.image"
 MOOSE_CHANGES_FILE="$MOOSE_FILE.changes"
@@ -102,6 +103,16 @@ cp "$ROOT/res/moose.changes" $MOOSE_CHANGES_FILE
 ln -fs "$ROOT/res/PharoV10.sources" "$BUILD_PATH/$MOOSE_FILE"
 cp -rf "$ROOT/res/Fonts" "$BUILD_PATH/$MOOSE_FILE"
 
+#copy java sources
+mkdir "$BUILD_PATH/$MOOSE_FILE/src"
+mkdir "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE"
+cd $SRC_PATH
+for file in $(find -L . -name '*.java'); do 
+  mkdir -p "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file) 
+  cp $file "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file)
+done
+cd "$BUILD_PATH/$MOOSE_FILE"
+
 "$PHARO_VM" $PHARO_PARAM $MOOSE_IMAGE_FILE $COMPLETE_SCRIPT
 
 # cleaning
@@ -109,6 +120,7 @@ rm $COMPLETE_SCRIPT
 cd $BUILD_PATH
 tar -czf "$MOOSE_FILE.tgz" "$MOOSE_FILE"
 rm -rf "$BUILD_PATH/$MOOSE_FILE"
+rm -rf "$INFUSION/temp"
 
 echo -e "\n"=====DONE=====
 
