@@ -30,7 +30,7 @@ SCRIPTS_PATH="$ROOT/scripts"
 
 # help function
 function display_help() {
-	echo "$(basename $0) [-p target_file_prefix] [-f src_folder] {-s smalltalk_script}"
+	echo "$(basename $0) [-p target_file_prefix] {-s smalltalk_script}"
 }
 
 # parse options
@@ -38,9 +38,6 @@ while getopts ":p:r:s:?" OPT ; do
 	case "$OPT" in
     	p)	# prefix
 			PROJECT_PREFIX=$OPTARG
-			;;
-		f) 	# src
-			SRC_PATH=$OPTARG
 			;;
 		s)	# script
 			if [ -f "$SCRIPTS_PATH/$OPTARG.st" ] ; then
@@ -59,7 +56,7 @@ done
 
 if [ -z "$SCRIPTS" ] ; then
 	# the default scripts
-	SCRIPTS=("$SCRIPTS_PATH/import-mse.st" "$SCRIPTS_PATH/open-moose-panel.st" "$SCRIPTS_PATH/save-and-quit-image.st")
+	SCRIPTS=("$SCRIPTS_PATH/open-moose-panel.st" "$SCRIPTS_PATH/save-and-quit-image.st")
 fi
 
 INFUSION="$ROOT/inFusion"
@@ -68,17 +65,6 @@ DATE=`date +%Y-%m-%d--%H-%M-%S`
 MSE_FILE="$PROJECT_PREFIX-$DATE.mse"
 
 echo -e "\n"=====STARTING AUTO MOOSE====="\n"
-echo -e "\n"Start inFusion"\n"
-
-cd $INFUSION
-"./java2mse.sh" $SRC_PATH "famix30" $MSE_FILE
-
-if [ ! -f $MSE_FILE ] ; then
-	echo -e "\n"=====ERROR PRODUCING MSE FILE====="\n"Make sure the path to the sources is correct
-	exit 1
-fi
-
-echo -e "\n"Load in Moose"\n"
 
 COMPLETE_SCRIPT="$SCRIPTS_PATH/to-run.st"
 
@@ -95,22 +81,12 @@ MOOSE_IMAGE_FILE="$MOOSE_FILE.image"
 MOOSE_CHANGES_FILE="$MOOSE_FILE.changes"
 
 mkdir "$BUILD_PATH/$MOOSE_FILE"
-mv $MSE_FILE "$BUILD_PATH/$MOOSE_FILE"
 cd "$BUILD_PATH/$MOOSE_FILE"
 
 cp "$ROOT/res/moose.image" $MOOSE_IMAGE_FILE
 cp "$ROOT/res/moose.changes" $MOOSE_CHANGES_FILE
 ln -fs "$ROOT/res/PharoV10.sources" "$BUILD_PATH/$MOOSE_FILE"
-cp -rf "$ROOT/res/Fonts" "$BUILD_PATH/$MOOSE_FILE"
 
-#copy java sources
-mkdir "$BUILD_PATH/$MOOSE_FILE/src"
-mkdir "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE"
-cd $SRC_PATH
-for file in $(find -L . -name '*.java'); do 
-  mkdir -p "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file) 
-  cp $file "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file)
-done
 cd "$BUILD_PATH/$MOOSE_FILE"
 
 "$PHARO_VM" $PHARO_PARAM $MOOSE_IMAGE_FILE $COMPLETE_SCRIPT
@@ -118,9 +94,11 @@ cd "$BUILD_PATH/$MOOSE_FILE"
 # cleaning
 rm $COMPLETE_SCRIPT
 cd $BUILD_PATH
+
+#"$ROOT/resize-window.sh" "$BUILD_PATH/$MOOSE_FILE/$MOOSE_IMAGE_FILE"
+
 tar -czf "$MOOSE_FILE.tgz" "$MOOSE_FILE"
 rm -rf "$BUILD_PATH/$MOOSE_FILE"
-rm -rf "$INFUSION/temp"
 
 echo -e "\n"=====DONE=====
 
