@@ -1,0 +1,1 @@
+OnMooseReport openOn: MooseModel root allModels last
