@@ -34,8 +34,12 @@ function display_help() {
 }
 
 # parse options
-while getopts ":p:r:s:?" OPT ; do
+while getopts ":p:i:s:?" OPT ; do
 	case "$OPT" in
+		i)  # input image
+			BASE_IMAGE_FILE="$OPTARG.image"
+			BASE_CHANGES_FILE="$OPTARG.changes"
+			;;
     	p)	# prefix
 			PROJECT_PREFIX=$OPTARG
 			;;
@@ -58,6 +62,12 @@ if [ -z "$SCRIPTS" ] ; then
 	# the default scripts
 	SCRIPTS=("$SCRIPTS_PATH/open-moose-panel.st" "$SCRIPTS_PATH/save-and-quit-image.st")
 fi
+
+if [ -z "$BASE_IMAGE_FILE" ] ; then
+	# the default image name
+	BASE_IMAGE_FILE="$ROOT/res/moose.image"
+	BASE_CHANGES_FILE="$ROOT/res/moose.changes"
+fi	
 
 INFUSION="$ROOT/inFusion"
 
@@ -83,8 +93,8 @@ MOOSE_CHANGES_FILE="$MOOSE_FILE.changes"
 mkdir "$BUILD_PATH/$MOOSE_FILE"
 cd "$BUILD_PATH/$MOOSE_FILE"
 
-cp "$ROOT/res/moose.image" $MOOSE_IMAGE_FILE
-cp "$ROOT/res/moose.changes" $MOOSE_CHANGES_FILE
+cp $BASE_IMAGE_FILE $MOOSE_IMAGE_FILE
+cp $BASE_CHANGES_FILE $MOOSE_CHANGES_FILE
 ln -fs "$ROOT/res/PharoV10.sources" "$BUILD_PATH/$MOOSE_FILE"
 
 cd "$BUILD_PATH/$MOOSE_FILE"
