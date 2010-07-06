@@ -101,7 +101,6 @@ cd "$BUILD_PATH/$MOOSE_FILE"
 cp "$ROOT/res/moose.image" $MOOSE_IMAGE_FILE
 cp "$ROOT/res/moose.changes" $MOOSE_CHANGES_FILE
 ln -fs "$ROOT/res/PharoV10.sources" "$BUILD_PATH/$MOOSE_FILE"
-cp -rf "$ROOT/res/Fonts" "$BUILD_PATH/$MOOSE_FILE"
 
 #copy java sources
 mkdir "$BUILD_PATH/$MOOSE_FILE/src"
