@@ -121,8 +121,8 @@ cd $BUILD_PATH
 
 "$ROOT/resize-window.sh" "$BUILD_PATH/$MOOSE_FILE/$MOOSE_IMAGE_FILE"
 
-tar -czf "$MOOSE_FILE.tgz" "$MOOSE_FILE"
-rm -rf "$BUILD_PATH/$MOOSE_FILE"
+#tar -czf "$MOOSE_FILE.tgz" "$MOOSE_FILE"
+#rm -rf "$BUILD_PATH/$MOOSE_FILE"
 rm -rf "$INFUSION/temp"
 
 echo -e "\n"=====DONE=====
