@@ -9,11 +9,11 @@ Structure:
 
 /
   builds/ 		- the folder where the built images will reside
-  inFusion/		- the preferred location for the inFusion folder containing the java2mse.sh
+  inFusion/		- the preferred location for the inFusion folder containing the java2mse.sh/java2mse.bat
   res/			- Moose specific image and other resources
   scripts/		- Smalltalk scripts for specifying Moose behavior
   pharo/		- the preferred location for pharo VMs
-  run.sh		- master script to create the Moose new image
+  run*.*		- master scripts to create the Moose new image on various platforms
 
 
 How to install:
@@ -24,3 +24,7 @@ How to install:
 	- Ensure the path to sources
 	- Ensure the scripts to be run
 - Execute run.sh (eventually with parameters)
+
+For Windows:
+- You will also need to have robocopy available from command line:
+http://www.microsoft.com/downloads/en/confirmation.aspx?familyId=9d467a69-57ff-4ae7-96ee-b18c4790cffd&displayLang=en
