@@ -1,3 +1,4 @@
+@echo off
 echo ------ AUTO MOOSE STARTED ------
 
 set ROOT=%CD%
