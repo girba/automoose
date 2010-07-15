@@ -28,7 +28,7 @@ set MSE_FILE=%PROJECT_PREFIX%-%DATE%.mse
 cd %INFUSION%
 call java2mse.bat "%SRC_PATH%" "famix30" "%MSE_FILE%"
 
-if not exist "%MSE_FILE%". exit 1
+if not exist "%INFUSION%\%MSE_FILE%" exit 1
 
 set MOOSE_FILE=moose-%PROJECT_PREFIX%-%DATE%
 set MOOSE_IMAGE_FILE=%MOOSE_FILE%.image
