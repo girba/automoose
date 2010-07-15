@@ -9,7 +9,6 @@ set BUILD_PATH=%ROOT%\builds
 set PHARO_VM=%ROOT%\pharo\PharoVM-Win32-4\Pharo.exe
 set PHARO_VM=%ROOT%\pharo\Squeak.exe
 
-set PHARO_PARAM=-headless
 set SRC_PATH=%ROOT%\src
 set SCRIPTS_PATH=%ROOT%\scripts
 set COMPLETE_SCRIPT=%SCRIPTS_PATH%\to-run.st
@@ -52,7 +51,7 @@ call robocopy "%SRC_PATH%" "%BUILD_PATH%\%MOOSE_FILE%\src" *.java /s
 cd "%BUILD_PATH%\%MOOSE_FILE%\"
 
 echo Start Moose
-call "%PHARO_VM%" "%MOOSE_IMAGE_FILE%" "%COMPLETE_SCRIPT%"
+call "%PHARO_VM%" -headless "%MOOSE_IMAGE_FILE%" "%COMPLETE_SCRIPT%"
 
 cd %ROOT%
 echo ------ AUTO MOOSE DONE ------
