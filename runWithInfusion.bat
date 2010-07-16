@@ -14,13 +14,13 @@ set SCRIPTS_PATH=%ROOT%\scripts
 set COMPLETE_SCRIPT=%SCRIPTS_PATH%\to-run.st
 set INFUSION=%ROOT%\inFusion
 
-for /f "tokens=1,2" %%u in ('date /t') do set d=%%v
+for /f "tokens=1,2" %%v in ('date /t') do set d=%%v
 for /f "tokens=1" %%u in ('time /t') do set t=%%u
 if "%t:~1,1%"==":" set t=0%t%
-set datestr=%d:~6,4%%d:~0,2%%d:~3,2%
-set timestr=%t:~0,2%%t:~3,2%
-rem SET DATE=%date:~0,4%-%date:~7,2%-%date:~4,2%-%time:~0,2%-%time:~3,2%-%time:~6,2%
-set DATE=%datestr%-%timestr%
+set datestr=%d:~6,4%-%d:~3,2%-%d:~0,2%
+set timestr=%t:~0,2%-%t:~3,2%
+set DATE=%datestr%--%timestr%
+echo %DATE%
 
 echo Start inFusion
 set MSE_FILE=%PROJECT_PREFIX%-%DATE%.mse

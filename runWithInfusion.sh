@@ -111,6 +111,14 @@ for file in $(find -L . -name '*.java'); do
   mkdir -p "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file) 
   cp $file "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file)
 done
+for file in $(find -L . -name '*.xml'); do 
+  mkdir -p "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file) 
+  cp $file "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file)
+done
+for file in $(find -L . -name '*.MF'); do 
+  mkdir -p "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file) 
+  cp $file "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file)
+done
 cd "$BUILD_PATH/$MOOSE_FILE"
 
 "$PHARO_VM" $PHARO_PARAM $MOOSE_IMAGE_FILE $COMPLETE_SCRIPT
