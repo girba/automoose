@@ -35,7 +35,7 @@ function display_help() {
 }
 
 # parse options
-while getopts ":p:r:s:?" OPT ; do
+while getopts ":p:f:s:?" OPT ; do
 	case "$OPT" in
     	p)	# prefix
 			PROJECT_PREFIX=$OPTARG
@@ -119,9 +119,13 @@ for file in $(find -L . -name '*.MF'); do
   mkdir -p "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file) 
   cp $file "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file)
 done
+for file in $(find -L . -name '*.project'); do 
+  mkdir -p "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file) 
+  cp $file "$BUILD_PATH/$MOOSE_FILE/src/$PROJECT_PREFIX-$DATE/"$(dirname $file)
+done
 cd "$BUILD_PATH/$MOOSE_FILE"
 
-"$PHARO_VM" $PHARO_PARAM $MOOSE_IMAGE_FILE $COMPLETE_SCRIPT
+"$PHARO_VM" $PHARO_PARAM "$BUILD_PATH/$MOOSE_FILE/$MOOSE_IMAGE_FILE" $COMPLETE_SCRIPT
 
 # cleaning
 rm $COMPLETE_SCRIPT
