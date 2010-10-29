@@ -13,8 +13,8 @@ BUILD_PATH="${WORKSPACE:="$ROOT/builds"}"
 # specify the VM for your platform
 PHARO_VM="$ROOT/pharo/Squeak-3.11.3.2135-solaris2.10_i386/bin/squeak"
 PHARO_VM="$ROOT/pharo/pharo-vm-0.15.2f-linux/squeak"
-PHARO_VM="$ROOT/pharo/Pharo-Cog.app/Contents/MacOS/Croquet"
 PHARO_VM="$ROOT/pharo/Squeak 4.2.2beta1U.app/Contents/MacOS/Squeak VM Opt"
+PHARO_VM="$ROOT/pharo/Cog.app/Contents/MacOS/Croquet"
 
 #PHARO_PARAM="-nodisplay -nosound" #for Linux
 PHARO_PARAM="-headless" #for Mac

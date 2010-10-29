@@ -69,8 +69,6 @@ if [ -z "$BASE_IMAGE_FILE" ] ; then
 	BASE_CHANGES_FILE="$ROOT/res/moose.changes"
 fi	
 
-INFUSION="$ROOT/inFusion"
-
 DATE=`date +%Y-%m-%d--%H-%M-%S`
 MSE_FILE="$PROJECT_PREFIX-$DATE.mse"
 
@@ -79,7 +77,6 @@ echo -e "\n"=====STARTING AUTO MOOSE====="\n"
 COMPLETE_SCRIPT="$SCRIPTS_PATH/to-run.st"
 
 echo "\"this is the complete script to be run\"" > "$COMPLETE_SCRIPT"
-echo "wantedMse := '${MSE_FILE}'." >> $COMPLETE_SCRIPT
 for FILE in "${SCRIPTS[@]}" ; do
  cat "$FILE" >> "$COMPLETE_SCRIPT"
  echo "!" >> "$COMPLETE_SCRIPT"
@@ -103,12 +100,7 @@ cd "$BUILD_PATH/$MOOSE_FILE"
 
 # cleaning
 rm $COMPLETE_SCRIPT
-cd $BUILD_PATH
-
-#"$ROOT/resize-window.sh" "$BUILD_PATH/$MOOSE_FILE/$MOOSE_IMAGE_FILE"
-
-tar -czf "$MOOSE_FILE.tgz" "$MOOSE_FILE"
-rm -rf "$BUILD_PATH/$MOOSE_FILE"
+cd $ROOT
 
 echo -e "\n"=====DONE=====
 
