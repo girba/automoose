@@ -1,5 +1,5 @@
 Auto Moose
-(c) 2010 Tudor Girba
+(c) 2010-2011 Tudor Girba
 Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 
 The goal of this package is to provide an automatic 
@@ -9,12 +9,15 @@ Structure:
 
 /
   builds/ 						- the folder where the built images will reside
-  inFusion/						- the preferred location for the inFusion folder containing java2mse.sh and java2mse.bat scripts
-  verveinej.extractor.core/		- the preferred location for the VerveineJ folder containing the verveinej.sh script
+  inFusion/						- the preferred location for the inFusion folder
+								  containing java2mse.sh and java2mse.bat scripts
+  verveinej.extractor.core/		- the preferred location for the VerveineJ folder
+								  containing the verveinej.sh script
   res/							- Moose specific image and other resources
   scripts/						- Smalltalk scripts for specifying Moose behavior
   pharo/						- the preferred location for pharo VMs
-  run*.*						- master scripts to create the Moose new image on various platforms
+  run*.*						- master scripts to create the Moose new image
+								  on various platforms
 
 
 How to install:
