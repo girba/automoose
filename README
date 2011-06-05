@@ -8,17 +8,20 @@ generation of dedicated Moose images starting from source files.
 Structure:
 
 /
-  builds/ 		- the folder where the built images will reside
-  inFusion/		- the preferred location for the inFusion folder containing the java2mse.sh/java2mse.bat
-  res/			- Moose specific image and other resources
-  scripts/		- Smalltalk scripts for specifying Moose behavior
-  pharo/		- the preferred location for pharo VMs
-  run*.*		- master scripts to create the Moose new image on various platforms
+  builds/ 						- the folder where the built images will reside
+  inFusion/						- the preferred location for the inFusion folder containing java2mse.sh and java2mse.bat scripts
+  verveinej.extractor.core/		- the preferred location for the VerveineJ folder containing the verveinej.sh script
+  res/							- Moose specific image and other resources
+  scripts/						- Smalltalk scripts for specifying Moose behavior
+  pharo/						- the preferred location for pharo VMs
+  run*.*						- master scripts to create the Moose new image on various platforms
 
 
 How to install:
 - Get the right VM for Pharo from: http://www.pharo-project.org/pharo-download
-- Get inFusion from: http://www.intooitus.com/infusion/download/inFusion.zip
+- Get a Java parser
+	- VerveineJ from: http://ci.moosetechnology.org/job/verveinej/lastSuccessfulBuild/artifact/verveine.extractor.java/*zip*/verveine.extractor.java.zip
+	- inFusion from: http://www.intooitus.com/infusion/download/inFusion.zip
 - Check the variables and comments from run.sh
 	- Ensure the path to the Pharo VM
 	- Ensure the path to sources
